@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# hooks/pre-commit
+#
+# Semantic Firewall — pre-commit enforcement.
+#
+# Blocks any commit that:
+#   1. Introduces forbidden semantic tokens into registry.yaml (exact or fuzzy)
+#   2. Introduces structural schema violations into registry.yaml
+#
+# On success, writes .registry.sha256 so the runtime firewall can verify
+# the registry was approved before it was committed.
+#
+# Install:
+#   make install-hooks
+
+set -euo pipefail
+
+# Only run if registry.yaml is staged for this commit
+if ! git diff --cached --name-only | grep -q "^registry.yaml$"; then
+    exit 0
+fi
+
+echo "[PRE-COMMIT] registry.yaml changed — running semantic firewall validator..."
+
+python validator.py
+STATUS=$?
+
+if [ $STATUS -ne 0 ]; then
+    echo ""
+    echo "[PRE-COMMIT] BLOCKED — commit rejected."
+    echo "  Fix the violations above, then re-stage registry.yaml and retry."
+    exit 1
+fi
+
+# Stage the updated hash seal so it travels with the commit
+git add .registry.sha256
+
+echo "[PRE-COMMIT] PASSED — registry sealed and staged."

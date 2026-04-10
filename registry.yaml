@@ -1,0 +1,24 @@
+sensors:
+  - name: access_control
+    allowed_facts:
+      - user_id
+      - resource_id
+      - action
+      - session_id
+      - timestamp
+
+  - name: financial_ledger
+    allowed_facts:
+      - transaction_id
+      - account_id
+      - amount_usd
+      - entry_type
+      - timestamp
+
+  - name: system_integrity
+    allowed_facts:
+      - process_id
+      - file_path
+      - checksum
+      - event_type
+      - timestamp

@@ -1,0 +1,19 @@
+# Maka doctrine and internal AI context — not for version control
+ai/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# IDE
+.idea/
+
+# Runtime artefacts
+logs/
+node_id
+
+# Registry seal — committed explicitly after make seal, excluded from auto-tracking
+# (remove this line if you want git to track .registry.sha256 by default)
+# .registry.sha256

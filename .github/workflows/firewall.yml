@@ -1,0 +1,43 @@
+name: Semantic Firewall
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  validate-and-test:
+    name: Validate registry + run harness
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Phase 1 — validate registry schema and semantics
+        run: python validator.py
+
+      - name: Phase 2 — run full scenario harness
+        run: python test_scenario.py
+
+      - name: Verify registry seal is current
+        run: |
+          COMMITTED=$(cat .registry.sha256 | tr -d '[:space:]')
+          CURRENT=$(sha256sum registry.yaml | awk '{print $1}')
+          if [ "$COMMITTED" != "$CURRENT" ]; then
+            echo "registry.yaml has been modified without re-running validator.py"
+            echo "  committed hash: $COMMITTED"
+            echo "  current hash:   $CURRENT"
+            exit 1
+          fi
+          echo "Registry seal verified: $CURRENT"

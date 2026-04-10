@@ -1,0 +1,6 @@
+sensors:
+  - name: bad_auditor
+    allowed_facts:
+      - compliance_status
+      - risk_score
+      - fail_reason
