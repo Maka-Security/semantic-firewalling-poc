@@ -138,10 +138,15 @@ def main():
 
     # Seal: write approved SHA256 only for the production registry.
     # Doctrine: trust boundary — the firewall must not accept a registry that
-    # was not approved by the validator. Test fixtures are not sealed.
-    if Path(REGISTRY_PATH).resolve() == Path("registry.yaml").resolve():
+    # was not approved by the validator. Test fixtures are sealed if REGISTRY_HASH_PATH is set.
+    should_seal = (
+        Path(REGISTRY_PATH).resolve() == Path("registry.yaml").resolve() or
+        __import__("os").environ.get("REGISTRY_HASH_PATH")
+    )
+    if should_seal:
+        hash_path = Path(__import__("os").environ.get("REGISTRY_HASH_PATH", ".registry.sha256"))
         approved_hash = hashlib.sha256(Path(REGISTRY_PATH).read_bytes()).hexdigest()
-        HASH_PATH.write_text(approved_hash + "\n")
+        hash_path.write_text(approved_hash + "\n")
         print(f"[VALIDATOR] Registry sealed: {approved_hash}")
     print("[VALIDATOR] PASS — registry is structurally and semantically clean.")
     sys.exit(0)

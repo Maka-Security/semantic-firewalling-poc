@@ -1,0 +1,89 @@
+# Forum post fixtures for NIST CSF intake agent testing
+
+forum_posts:
+  - post_id: "#post-2847"
+    title: "Access Control Implementation Status"
+    content: |
+      Updated access control documentation and test results.
+
+      Control: Access Control List Management
+      Function: PROTECT
+      Status: Implemented
+      Implementation Date: 2024-01
+      Last Test: 2025-01-15
+      Responsible Team: Identity & Access Team
+
+      We have documented procedures for all access control reviews.
+      Roles are clearly assigned to team members.
+      Testing happens monthly via automated scripts.
+      We collect metrics on access requests and denials.
+
+      Current gap: Need to formalize improvement plan for policy updates.
+
+    timestamp: "2025-01-20T10:30:00Z"
+    posting_user: "alice.smith@company.com"
+    expected_function: "protect"
+    expected_evidence_type: "control_documentation"
+    expected_indicators:
+      - documented_procedure
+      - roles_assigned
+      - metrics_collected
+      - tested_within_30_days
+    expected_findings: []
+
+  - post_id: "#post-3102"
+    title: "Incident Response Testing Results"
+    content: |
+      Quarterly incident response test completed.
+
+      Control: Incident Response Plan
+      Function: RESPOND
+      Last Test: 2024-12-15
+
+      We have a documented incident response procedure.
+      Testing is conducted quarterly.
+      No formal metrics are being collected yet.
+      Roles are assigned but some overlap remains.
+
+      Finding: Need to establish baseline metrics for incident detection time.
+      We should improve our response time tracking.
+
+    timestamp: "2025-01-22T14:15:00Z"
+    posting_user: "bob.jones@company.com"
+    expected_function: "respond"
+    expected_evidence_type: "procedure"
+    expected_indicators:
+      - documented_procedure
+      - tested_within_90_days
+    expected_findings:
+      - metrics_not_collected
+      - roles_unclear
+
+  - post_id: "#post-3456"
+    title: "Detection Capabilities Review"
+    content: |
+      Security monitoring status update.
+
+      Currently we have:
+      - SIEM solution deployed (automated logs)
+      - Detection rules reviewed monthly
+      - Alerts monitored 24/7
+
+      What we lack:
+      - Formal testing procedure for detection accuracy
+      - Documented metrics on true positive/false positive rates
+      - No incident response integration documented
+
+      The team monitoring alerts is not formally trained.
+
+    timestamp: "2025-01-23T09:00:00Z"
+    posting_user: "carol.white@company.com"
+    expected_function: "detect"
+    expected_evidence_type: "tool_output"
+    expected_indicators:
+      - automated_control
+    expected_findings:
+      - documentation_missing
+      - metrics_not_collected
+      - testing_overdue
+      - training_incomplete

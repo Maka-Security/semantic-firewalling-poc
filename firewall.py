@@ -22,14 +22,15 @@ Decision path for emit(sensor, fact, value):
 """
 
 import hashlib
+import os
 import yaml
 from pathlib import Path
 
 import logger
 from algorithms import BloomFilter
 
-REGISTRY_PATH  = Path("registry.yaml")
-HASH_PATH      = Path(".registry.sha256")
+REGISTRY_PATH  = Path(os.environ.get("REGISTRY_PATH", "registry.yaml"))
+HASH_PATH      = Path(os.environ.get("REGISTRY_HASH_PATH", ".registry.sha256"))
 
 
 # ── registry integrity ────────────────────────────────────────────────────────

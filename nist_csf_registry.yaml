@@ -1,0 +1,79 @@
+sensors:
+  - name: nist_csf_intake_agent
+    allowed_facts:
+      # ────────────────────────────────────────────────────────
+      # EVIDENCE CATEGORIZATION (what NIST CSF function?)
+      # ────────────────────────────────────────────────────────
+      - forum_post_mapped_to_function_identify
+      - forum_post_mapped_to_function_protect
+      - forum_post_mapped_to_function_detect
+      - forum_post_mapped_to_function_respond
+      - forum_post_mapped_to_function_recover
+
+      # ────────────────────────────────────────────────────────
+      # EVIDENCE TYPE (what kind of evidence is this?)
+      # ────────────────────────────────────────────────────────
+      - evidence_type_control_documentation
+      - evidence_type_policy
+      - evidence_type_procedure
+      - evidence_type_test_result
+      - evidence_type_interview_notes
+      - evidence_type_tool_output
+      - evidence_type_audit_report
+      - evidence_type_training_record
+
+      # ────────────────────────────────────────────────────────
+      # EVIDENCE EXTRACTION (factual, verifiable from forum)
+      # ────────────────────────────────────────────────────────
+      - evidence_extracted_control_name
+      - evidence_extracted_implementation_date
+      - evidence_extracted_last_test_date
+      - evidence_extracted_responsible_team
+      - evidence_extracted_documented_procedure_exists
+      - evidence_extracted_roles_assigned
+      - evidence_extracted_metrics_type
+      - evidence_extracted_testing_frequency
+
+      # ────────────────────────────────────────────────────────
+      # MATURITY INDICATORS (enumerated observations only)
+      # ────────────────────────────────────────────────────────
+      - maturity_indicator_documented_procedure
+      - maturity_indicator_roles_assigned
+      - maturity_indicator_metrics_collected
+      - maturity_indicator_tested_within_30_days
+      - maturity_indicator_tested_within_90_days
+      - maturity_indicator_tested_within_1_year
+      - maturity_indicator_improvement_plan
+      - maturity_indicator_training_completed
+      - maturity_indicator_automated_control
+
+      # ────────────────────────────────────────────────────────
+      # FINDINGS (what gaps or inconsistencies exist?)
+      # ────────────────────────────────────────────────────────
+      - finding_control_not_implemented
+      - finding_documentation_missing
+      - finding_procedure_undocumented
+      - finding_testing_overdue
+      - finding_metrics_not_collected
+      - finding_inconsistent_execution
+      - finding_roles_unclear
+      - finding_improvement_plan_missing
+      - finding_training_incomplete
+
+      # ────────────────────────────────────────────────────────
+      # AUDIT LINKAGE (proof of evidence and traceability)
+      # ────────────────────────────────────────────────────────
+      - audit_link_forum_post_id
+      - audit_link_evidence_source_quote
+      - audit_link_extracted_from_forum_post_timestamp
+      - audit_link_confidence_level_high
+      - audit_link_confidence_level_medium
+
+      # ────────────────────────────────────────────────────────
+      # METADATA (temporal and source tracking)
+      # ────────────────────────────────────────────────────────
+      - metadata_assessment_date_utc
+      - metadata_evidence_collected_date
+      - metadata_forum_post_url
+      - metadata_posting_user
+      - metadata_processing_timestamp_utc
