@@ -1,19 +1,43 @@
-# Maka doctrine and internal AI context — not for version control
+# Ship code, tests, registries, seals, and documents.
+# Everything below stays out of the repository.
+
+# AI frameworks and local agent context
 ai/
+.claude/
+.cursor/
+.agents/
+.aider/
+.continue/
+.windsurf/
+
+# Secrets and local identity
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+node_id
+
+# Runtime artefacts
+logs/
+*.log
 
 # Python
 __pycache__/
 *.pyc
 *.pyo
 .venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
 
 # IDE
 .idea/
-
-# Runtime artefacts
-logs/
-node_id
-
-# Registry seal — committed explicitly after make seal, excluded from auto-tracking
-# (remove this line if you want git to track .registry.sha256 by default)
-# .registry.sha256
+.vscode/
